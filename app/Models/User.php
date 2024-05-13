@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * find an return a userby the current given ID
+     * @param  $id
+     */
+    public static function getSingleByID($id){
+        return self::find($id);
+    }
 }

@@ -1,0 +1,26 @@
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/regular.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
+@import '@fortawesome/fontawesome-free/css/brands.css';
+
+.home-avatar:hover{
+  background-color: #17a2b8;
+  color: #fff;
+}
+.home-avatar:active, .home-avatar:focus{
+  background-color: #17a2b8;
+}
+
+.frontend .dropdown:hover .dropdown-menu {
+  display: block;
+  top: 100%;
+  margin-top:2px;
+}
+
+.bg-home-header {
+  background-color: rgba(3, 37 ,49,1);
+}
+
+.footer-bg {
+  background-color: rgba(1, 12, 16,1);
+}
