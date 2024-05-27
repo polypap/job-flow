@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
-use \App\Models\Job;
 
-class JobController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $jobs = Job::latest()->get();
-        return view('jobs.index',['jobs'=> $jobs]);
+        $categories = Category::getRecords();
+        return view('jobs.category.index',['categories'=> $categories]);
     }
 
     /**
@@ -21,7 +21,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('jobs.create');
+        return view('jobs.category.create');
     }
 
     /**
@@ -29,16 +29,15 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
-            'title'=>'required|string',
-            'description'=> 'required',
-            'salary' => 'required'
+            'title' => 'required|min:2|max:50',
+            'description'=>''
         ]);
-    
-        $jobs = Job::create($validatedData);
+        
+        Category::create($validatedData);
 
-        return redirect()->back()->with('success', 'Job Successfully Created');
-         
+        return redirect()->route('categories.create')->with('success', 'Category created successfully.');
     }
 
     /**
@@ -46,7 +45,7 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        
+        //
     }
 
     /**

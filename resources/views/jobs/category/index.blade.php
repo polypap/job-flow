@@ -1,11 +1,11 @@
 @extends('backend.layouts.app')
 @section('content')
   <div class="pagetitle">
-    <h1>Job List</h1>
+    <h1>Category List</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">jobs</li>
+        <li class="breadcrumb-item active">job Categories</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -13,37 +13,31 @@
   <section class="section jobs">
     <div class="row">
       <div class="col-lg-12 text-end mb-4">
-        <a href="{{route('jobs.create')}}" class="btn btn-primary">+ New Job</a>
+        <a href="{{route('categories.create')}}" class="btn btn-primary">+ New Category</a>
       </div>
 
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Jobs</h5>
+            <h5 class="card-title">Job Categories</h5>
             <table class="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Company</th>
+                  <th scope="col">Name</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Open Date</th>
-                  <th scope="col">Close Date</th>
+                  <th scope="col">Description</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <?php $counter = 1; ?>
-                @forelse($jobs as $job)
+                @forelse($categories as $category)
                 <tr>
                   <th scope="row">{{$counter}}</th>
-                  <td th:text="${client.name}"> {{Helpers::shortenString($job->title, 3)}}</td>
-                  <td th:text="${client.email}"></td>
-                  <td th:text="${client.phone}"></td>
-                  <td th:text="${client.address}"></td>
-                  <td th:text="${client.city}"></td>
-                  <td th:text="${client.countryid}"></td>
+                  <td> {{$category->title}}</td>
+                  <td> {{$category->status}}</td>
+                  <td>{{Helpers::shortenString($category->description, 10)}}</td>
                   <td>
                     <div class="btn-group gap-1">
                       <a th:href="@{clients/editclient(id=${client.id})}" class="btn btn-sm btn-primary" id="editBtn" data-bs-toggle="modal" data-bs-target="#editClient"><i class="bi bi-pencil-square"></i></a>

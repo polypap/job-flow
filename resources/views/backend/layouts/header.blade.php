@@ -203,10 +203,14 @@
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
+            <form class="dropdown-item d-flex align-items-center" method="Post" action="{{route('auth.logout')}}">
+              @csrf
+              @method('delete')
               <i class="bi bi-box-arrow-right"></i>
-              <span>Sign Out</span>
-            </a>
+              <button class="btn btn-link">
+                <span>Sign Out</span>
+              </button>
+            </form>
           </li>
         </ul><!-- End Profile Dropdown Items -->
       </li><!-- End Profile Nav -->

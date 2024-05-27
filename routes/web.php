@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -31,17 +32,22 @@ Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('
 Route::post('forgot-password', [AuthController::class, 'processForgot'])->name('forgotPassword.process');
 Route::get('reset-password/{token}', [AuthController::class, 'resetPassword'])->name('user.pass.reset.show');
 Route::post('reset-password/{token}', [AuthController::class, 'processResetPassword'])->name('user.pass.reset.process');
-Route::delete('logout', [AuthController::class, 'destroy'])->name('logout');
+// Route::delete('logout', [AuthController::class, 'destroy'])->name('logout');
 
-Route::get('jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+Route::delete('logout', fn() => to_route('auth.logout'))->name('logout');
+Route::delete('logout', [AuthController::class, 'destroy'])->name('auth.logout');
+
 // Route::resource('jooob', JobController::class);
 
 Route::middleware(['adminuser'])->group( function() {
   Route::get('panel/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-  Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
   Route::post('jobs', [JobController::class, 'store'])->name('jobs.store');
+  Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
+  Route::resource('categories', CategoryController::class)->only(['index', 'show','create','store','update','destroy']);
+  
 });
 // Route::delete('logout' , fn () => to_route('user.logout'))->name('logout');
 // Route::delete('logout', [AuthController::class, 'destroy'])->name('user.logout');
+Route::get('jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('jobs/{job}', [JobController::class, 'show'])->name('jobs.show');

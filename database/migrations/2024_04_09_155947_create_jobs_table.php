@@ -16,10 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->unsignedInteger('salary');
-            $table->string('location');
-            $table->string('category');
-            $table->enum('experience', Job::$experience);
+            $table->string('salary')->default("0");
+            $table->string('location')->default("US");
+            $table->string('category')->nullable();
+            $table->enum('experience', Job::$experience)->nullable();
             $table->timestamps();
         });
     }

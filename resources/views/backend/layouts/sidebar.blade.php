@@ -3,10 +3,10 @@
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
-    <li class="nav-item">
+    <li  @class(['nav-item', 'collapsed' => Route::current()->getName() == 'dashboard'])>
       <a @class([
-        'nav-item', 
-        'collapsed' => Route::current()->getName() != 'home'
+        'nav-link',
+        'collapsed' => Route::current()->getName() != 'dashboard'
         ]) href="{{route('dashboard')}}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
@@ -15,16 +15,27 @@
 
     <li @class([
       'nav-item', 
-      'collapsed' => Route::current()->getName() != 'jobs.index'
-                || Route::current()->getName() != 'jobs.create'
+      'collapsed' => Route::current()->getName() == 'jobs.index'
+                  || Route::current()->getName() == 'jobs.create'
+                  || Route::current()->getName() == 'categories.index'
+                  || Route::current()->getName() == 'categories.create'              
       ]) >
-      <a class="nav-link" data-bs-target="#job-nav" data-bs-toggle="collapse" href="">
+      <a @class([
+        'nav-link', 
+        'collapsed' => Route::current()->getName() != 'jobs.index'
+                    &&  Route::current()->getName() != 'jobs.create'
+                    && Route::current()->getName() != 'categories.index'
+                    && Route::current()->getName() != 'categories.create'
+                  
+        ]) data-bs-target="#job-nav" data-bs-toggle="collapse" href="">
         <i class="bi bi-briefcase"></i><span>Jobs</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="job-nav" @class([
         'nav-content collapse', 
         'show' => Route::current()->getName() == 'jobs.index'
                 || Route::current()->getName() == 'jobs.create'
+                || Route::current()->getName() == 'categories.index'
+                || Route::current()->getName() == 'categories.create'
         ]) data-bs-parent="#sidebar-nav">
         <li>
           <a  href="{{route('jobs.index')}}" @class(['text-success' => Route::current()->getName() == 'jobs.index'])>
@@ -37,12 +48,14 @@
           </a>
         </li>
         <li>
-          <a href="components-alerts.html">
+          <a href="{{route('categories.index')}}" @class([
+            'text-success' => Route::current()->getName() == 'categories.index'
+            ])>
             <i class="bi bi-circle"></i><span>Job Category</span>
           </a>
         </li>
       </ul>
-    </li><!-- End Job -->
+    </li><!-- End Jobs Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#aplication-nav" data-bs-toggle="collapse" href="">
@@ -55,9 +68,45 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li><!-- End Applicatios Nav -->
 
-    <!-- End F.A.Q Page Nav -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#company-nav" data-bs-toggle="collapse" href="">
+        <i class="bi bi-folder2-open"></i><span>Companies</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="company-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="components-alerts.html">
+            <i class="bi bi-circle"></i><span>All Companies</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Companies Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#globals-nav" data-bs-toggle="collapse" href="">
+        <i class="bi bi-folder2-open"></i><span>Globals</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="globals-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li class="nav-item">
+          <a href="components-alerts.html">
+            <i class="bi bi-circle"></i><span>Countries</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="components-alerts.html">
+            <i class="bi bi-circle"></i><span>States</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="components-alerts.html">
+            <i class="bi bi-circle"></i><span>Cities</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Companies Nav -->
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="pages-contact.html">

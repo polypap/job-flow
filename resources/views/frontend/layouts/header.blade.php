@@ -44,7 +44,7 @@
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><hr class="dropdown-divider"></li>
               <li class="text-center">
-                <form method="post" action="{{route('logout')}}">
+                <form method="post" action="{{route('auth.logout')}}">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-outline-primary  px-4">Logout</button>

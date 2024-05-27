@@ -34,6 +34,7 @@
   @include('backend.layouts.header')
   @include('backend.layouts.sidebar')
   <main id="main" class="main">
+    @include('notifications._messages')
     @yield('content')
   </main>
   @include('backend.layouts.footer')

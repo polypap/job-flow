@@ -9,7 +9,7 @@ class Job extends Model
 {
     use HasFactory;
 
-    protected $fillables = ['title', 'location','description','salary','category','experience'];
+    protected $fillable = ['title', 'location','description','salary','category','experience'];
 
     public static array $experience = ['entry', 'intermediate', 'senior'];
     public static array $category = ['IT', 'Finance', 'Sales', 'Marketing'] ;
