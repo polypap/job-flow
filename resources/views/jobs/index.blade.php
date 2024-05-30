@@ -49,7 +49,6 @@
                     @foreach($job->category as $cat)
                       {{$cat->title}}
                     @endforeach
-                   
                   </td>
                   <td>
                     <div class="btn-group gap-1">
