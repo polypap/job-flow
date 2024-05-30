@@ -30,6 +30,7 @@
                   <th scope="col">Status</th>
                   <th scope="col">Open Date</th>
                   <th scope="col">Close Date</th>
+                  <th scope="col">Category</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -38,12 +39,18 @@
                 @forelse($jobs as $job)
                 <tr>
                   <th scope="row">{{$counter}}</th>
-                  <td th:text="${client.name}"> {{Helpers::shortenString($job->title, 3)}}</td>
+                  <td> {{Helpers::shortenString($job->title, 3)}}</td>
                   <td th:text="${client.email}"></td>
                   <td th:text="${client.phone}"></td>
                   <td th:text="${client.address}"></td>
                   <td th:text="${client.city}"></td>
-                  <td th:text="${client.countryid}"></td>
+                  <td th:text="${client.city}"></td>
+                  <td>
+                    @foreach($job->category as $cat)
+                      {{$cat->title}}
+                    @endforeach
+                   
+                  </td>
                   <td>
                     <div class="btn-group gap-1">
                       <a th:href="@{clients/editclient(id=${client.id})}" class="btn btn-sm btn-primary" id="editBtn" data-bs-toggle="modal" data-bs-target="#editClient"><i class="bi bi-pencil-square"></i></a>

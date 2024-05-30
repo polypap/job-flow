@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +20,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('salary')->default("0");
             $table->string('location')->default("US");
-            $table->string('category')->nullable();
+            $table->foreignIdFor(User::class)->nullable();
+            $table->unsignedTinyInteger('status')->default(1);
             $table->enum('experience', Job::$experience)->nullable();
             $table->timestamps();
         });
@@ -29,6 +32,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropForeignIdFor(User::class);
+        });
         Schema::dropIfExists('jobs');
+        
     }
 };

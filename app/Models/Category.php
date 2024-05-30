@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
@@ -16,5 +17,16 @@ class Category extends Model
         ->where('deleted_at',null)
         ->orderBy('id','desc')
         ->paginate(10);
+    }
+
+    public static function getCategories(){
+        return self::select('categories.*')
+        ->where('deleted_at',null)
+        ->where('status','=', 1)
+        ->get();
+    }
+
+    public function job():BelongsTo{
+        return $this->belongsTo(Job::class);
     }
 }

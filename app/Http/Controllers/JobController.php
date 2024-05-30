@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use \App\Models\Job;
 
@@ -12,7 +13,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::latest()->get();
+        $jobs = Job::with('category')->latest()->get();
         return view('jobs.index',['jobs'=> $jobs]);
     }
 
@@ -21,7 +22,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('jobs.create');
+        $categories = Category::getCategories();
+        return view('jobs.create', ['categories'=> $categories]);
     }
 
     /**
@@ -32,10 +34,18 @@ class JobController extends Controller
         $validatedData = $request->validate([
             'title'=>'required|string',
             'description'=> 'required',
-            'salary' => 'required'
+            'salary' => 'required',
+            'category_id'=> ''
         ]);
     
         $jobs = Job::create($validatedData);
+        $jobId = $jobs->id;
+        $category = Category::find($validatedData['category_id']);
+        if(!empty($category)) {
+            $category->job_id = $jobId;
+            $category->save();
+        }
+        //dd($jobs );
 
         return redirect()->back()->with('success', 'Job Successfully Created');
          

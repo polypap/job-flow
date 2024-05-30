@@ -109,9 +109,13 @@
           </div>
           <div class="col-md-2">
             <label for="category" class="form-label">Category</label>
-            <select id="category" name="category" class="form-select">
-              <option selected="">Choose...</option>
-              <option>...</option>
+            <select id="category" name="category_id" class="form-select">
+              @forelse($categories as $category)
+                <option value="{{$category->id}}" >{{$category->title}}</option>
+              @empty
+                
+              @endforelse
+              
             </select>
           </div>
           <div class="col-md-2">
@@ -125,7 +129,7 @@
           </div>
           <div class="col-md-12">
             <label for="opendate" class="form-label">Description</label>
-            <textarea class="form-control" name="description" id="description" style="height: 150px;"></textarea>
+            <textarea class="form-control tinymce-editor" name="description" id="description" style="height: 150px;"></textarea>
             @error('description')
               <div class="text-danger">
                 {{$message}}

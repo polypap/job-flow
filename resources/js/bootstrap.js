@@ -6,15 +6,17 @@ import 'bootstrap';
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+import { popper } from '@popperjs/core';
 import axios from 'axios';
 import jQuery from 'jquery';
-import { popper } from '@popperjs/core';
 window.axios = axios;
 //window.Popper = require('popper.js').default;
 window.Popper = popper;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.jQuery = jQuery;
+
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
