@@ -83,7 +83,7 @@
           </div>
           <div class="col-md-2">
             <label for="opendate" class="form-label">Open Date</label>
-            <input type="date" name="open_date" id="opendate" value="{{old('open_date')}}" class="form-control">
+            <input type="date" placeholder="04/05/2024" name="open_date" id="opendate" value="{{old('open_date')}}" class="form-control">
             @error('open_date')
               <div class="text-danger">
                 {{$message}}

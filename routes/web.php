@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -45,6 +46,7 @@ Route::middleware(['adminuser'])->group( function() {
   Route::post('jobs', [JobController::class, 'store'])->name('jobs.store');
   Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
   Route::resource('categories', CategoryController::class)->only(['index', 'show','create','store','update','destroy']);
+  Route::resource('companies', CompanyController::class)->only(['index', 'show','create','store','update','destroy']);
   
 });
 // Route::delete('logout' , fn () => to_route('user.logout'))->name('logout');

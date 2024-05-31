@@ -70,13 +70,25 @@
       </ul>
     </li><!-- End Applicatios Nav -->
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#company-nav" data-bs-toggle="collapse" href="">
+    <li @class([
+      'nav-item', 
+      'collapsed' => Route::current()->getName() == 'companies.index'              
+      ]) >
+      <a @class([
+        'nav-link', 
+        'collapsed' => Route::current()->getName() != 'companies.index'        
+        ]) 
+        data-bs-target="#company-nav" data-bs-toggle="collapse" href="">
         <i class="bi bi-folder2-open"></i><span>Companies</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="company-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="company-nav" @class([
+        'nav-content collapse', 
+        'show' => Route::current()->getName() == 'companies.index'
+        ])  data-bs-parent="#sidebar-nav">
         <li>
-          <a href="components-alerts.html">
+          <a href="{{route('companies.index')}}" @class([
+            'text-success active' => Route::current()->getName() == 'companies.index'
+            ])>
             <i class="bi bi-circle"></i><span>All Companies</span>
           </a>
         </li>

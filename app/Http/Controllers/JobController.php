@@ -61,11 +61,11 @@ class JobController extends Controller
         }
         
         //add company
-        $company = Company::find($validatedData['company_id']);
-        if(!empty($company)) {
-            $company->job_id = $jobId;
-            $company->save();
-        }
+        // $company = Company::find($validatedData['company_id']);
+        // if(!empty($company)) {
+        //     $company->job_id = $jobId;
+        //     $company->save();
+        // }
 
         return redirect()->back()->with('success', 'Job Successfully Created');
          

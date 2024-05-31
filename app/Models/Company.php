@@ -13,4 +13,8 @@ class Company extends Model
     public function jobs():HasMany{
         return $this->hasMany(Job::class);
     } 
+
+    public static function getRecords() {
+        return self::query()->latest()->paginate(10);
+    }
 }
