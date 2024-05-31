@@ -40,9 +40,10 @@
                 <tr>
                   <th scope="row">{{$counter}}</th>
                   <td> {{Helpers::shortenString($job->title, 3)}}</td>
-                  <td th:text="${client.email}"></td>
-                  <td th:text="${client.phone}"></td>
-                  <td th:text="${client.address}"></td>
+                  <td></td>
+                  <td></td>
+                  <td th:text="${client.address}">
+                    {{Helpers::booleanToString($job->status,['true'=>'Active','flase'=>'Closed'])}}</td>
                   <td th:text="${client.city}"></td>
                   <td th:text="${client.city}"></td>
                   <td>

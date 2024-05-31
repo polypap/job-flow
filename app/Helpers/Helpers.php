@@ -9,4 +9,16 @@ class Helpers {
     return $res;
   }
 
+  public static function booleanToString($bool = null, $value= ['true'=> '','false'=>'']){
+    $res = $value;
+    if($bool == null)
+      return -1;
+    if($bool == true || $bool ==1)
+      $res= $value['true'];
+    if($bool == false || $bool ==0)
+      $res= $value['false'];
+    return $res;
+      
+  }
+
 }

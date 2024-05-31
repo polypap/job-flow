@@ -11,7 +11,7 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'location','description','salary','experience'
+        'title', 'location','description','salary','experience','open_date','close_date'
     ];
 
     public static array $experience = ['entry', 'intermediate', 'senior'];
@@ -20,4 +20,13 @@ class Job extends Model
     public function category():HasMany {
         return $this->hasMany(Category::class);
     }
+
+    public function company(){
+
+    }
+
+    public function jobApplications() {
+        
+    }
+
 }
