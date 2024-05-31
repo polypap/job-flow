@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use \App\Models\Job;
 
@@ -13,7 +14,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::with('category')->latest()->get();
+        $jobs = Job::with(['category','company'])->latest()->get();
         return view('jobs.index',['jobs'=> $jobs]);
     }
 
@@ -23,7 +24,13 @@ class JobController extends Controller
     public function create()
     {
         $categories = Category::getCategories();
-        return view('jobs.create', ['categories'=> $categories]);
+        $companies = Company::all();
+        return view('jobs.create',
+            [
+                'categories'=> $categories,
+                'companies' => $companies
+            ]
+        );
     }
 
     /**
@@ -35,17 +42,30 @@ class JobController extends Controller
             'title'=>'required|string',
             'description'=> 'required',
             'salary' => 'required',
-            'category_id'=> ''
+            'category_id'=> '',
+            'company_id' => '',
+            'state_id' => '',
+            'open_date'=> 'date',
+            'close_date'=> 'date',
+            'status'=> ''
         ]);
     
         $jobs = Job::create($validatedData);
         $jobId = $jobs->id;
+
+        //add category
         $category = Category::find($validatedData['category_id']);
         if(!empty($category)) {
             $category->job_id = $jobId;
             $category->save();
         }
-        //dd($jobs );
+        
+        //add company
+        $company = Company::find($validatedData['company_id']);
+        if(!empty($company)) {
+            $company->job_id = $jobId;
+            $company->save();
+        }
 
         return redirect()->back()->with('success', 'Job Successfully Created');
          

@@ -38,18 +38,18 @@
                 || Route::current()->getName() == 'categories.create'
         ]) data-bs-parent="#sidebar-nav">
         <li>
-          <a  href="{{route('jobs.index')}}" @class(['text-success' => Route::current()->getName() == 'jobs.index'])>
+          <a  href="{{route('jobs.index')}}" @class(['text-success active' => Route::current()->getName() == 'jobs.index'])>
             <i class="bi bi-circle"></i><span>All Jobs</span>
           </a>
         </li>
         <li>
-          <a href="{{route('jobs.create')}}">
+          <a href="{{route('jobs.create')}}" @class(['text-success active' => Route::current()->getName() == 'jobs.create'])>
             <i class="bi bi-circle"></i><span>Add new Job</span>
           </a>
         </li>
         <li>
           <a href="{{route('categories.index')}}" @class([
-            'text-success' => Route::current()->getName() == 'categories.index'
+            'text-success active' => Route::current()->getName() == 'categories.index'
             ])>
             <i class="bi bi-circle"></i><span>Job Category</span>
           </a>

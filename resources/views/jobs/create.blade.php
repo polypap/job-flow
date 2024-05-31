@@ -28,9 +28,13 @@
           </div>
           <div class="col-md-4">
             <label for="company" class="form-label">Company</label>
-            <select id="company" name="company" value="{{old('company')}}" class="form-select">
-              <option selected="">Choose</option>
-              <option>...</option>
+            <select id="company" name="company_id" value="{{old('company_id')}}" class="form-select">
+              @forelse($companies as $company)
+                <option value="{{$company->id}}">{{$company->name}}</option>
+              @empty
+                
+              @endforelse
+              
             </select>
             @error('company')
               <div class="text-danger">
@@ -79,8 +83,8 @@
           </div>
           <div class="col-md-2">
             <label for="opendate" class="form-label">Open Date</label>
-            <input type="date" name="opendate" id="opendate" value="{{old('opendate')}}" class="form-control">
-            @error('opendate')
+            <input type="date" name="open_date" id="opendate" value="{{old('open_date')}}" class="form-control">
+            @error('open_date')
               <div class="text-danger">
                 {{$message}}
               </div>
@@ -88,8 +92,8 @@
           </div>
           <div class="col-md-2">
             <label for="opendate" class="form-label">Close Date</label>
-            <input type="date" name="closedate" id="closedate" class="form-control">
-            @error('closedate')
+            <input type="date" name="close_date" id="closedate" value="{{old('close_date')}}" class="form-control">
+            @error('close_date')
               <div class="text-danger">
                 {{$message}}
               </div>
@@ -98,8 +102,8 @@
           <div class="col-md-2">
             <label for="status" class="form-label">Status</label>
             <select id="status" name="status" class="form-select">
-              <option selected="">Choose...</option>
-              <option>...</option>
+              <option value=1 >Active</option>
+              <option value=0>Closed</option>
             </select>
             @error('status')
               <div class="text-danger">

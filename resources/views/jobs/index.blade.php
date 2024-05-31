@@ -25,7 +25,8 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Title</th>
-                  <th scope="col">Location</th>
+                  <th scope="col">City</th>
+                  <th scope="col">State</th>
                   <th scope="col">Company</th>
                   <th scope="col">Status</th>
                   <th scope="col">Open Date</th>
@@ -42,10 +43,11 @@
                   <td> {{Helpers::shortenString($job->title, 3)}}</td>
                   <td></td>
                   <td></td>
-                  <td th:text="${client.address}">
+                  <td>{{$job->company}}</td>
+                  <td>
                     {{Helpers::booleanToString($job->status,['true'=>'Active','flase'=>'Closed'])}}</td>
-                  <td th:text="${client.city}"></td>
-                  <td th:text="${client.city}"></td>
+                  <td>{{Helpers::getDateFormat($job->open_date)}}</td>
+                  <td>{{Helpers::getDateFormat($job->close_date)}}</td>
                   <td>
                     @foreach($job->category as $cat)
                       {{$cat->title}}

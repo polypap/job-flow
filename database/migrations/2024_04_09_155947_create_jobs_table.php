@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('location')->default("US");
             $table->foreignIdFor(User::class)->nullable();
             $table->unsignedTinyInteger('status')->default(1);
-            $table->dateTime('open_date')->nullable();
-            $table->dateTime('close_date')->nullable();
+            $table->date('open_date')->nullable();
+            $table->date('close_date')->nullable();
             $table->enum('experience', Job::$experience)->nullable();
             $table->timestamps();
         });

@@ -21,4 +21,10 @@ class Helpers {
       
   }
 
+  public static function getDateFormat($date="", $format = "d-m-Y") {
+    if($date==null || empty($date))
+      return "";
+    return date($format, strtotime($date));
+  }
+
 }
