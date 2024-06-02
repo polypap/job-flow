@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description','job_id'];
 
     public static function getRecords(){
         return self::select('categories.*')

@@ -17,6 +17,7 @@
       'nav-item', 
       'collapsed' => Route::current()->getName() == 'jobs.index'
                   || Route::current()->getName() == 'jobs.create'
+                  || Route::current()->getName() == 'jobs.edit'
                   || Route::current()->getName() == 'categories.index'
                   || Route::current()->getName() == 'categories.create'              
       ]) >
@@ -24,6 +25,7 @@
         'nav-link', 
         'collapsed' => Route::current()->getName() != 'jobs.index'
                     &&  Route::current()->getName() != 'jobs.create'
+                    &&  Route::current()->getName() != 'jobs.edit'
                     && Route::current()->getName() != 'categories.index'
                     && Route::current()->getName() != 'categories.create'
                   
@@ -34,6 +36,7 @@
         'nav-content collapse', 
         'show' => Route::current()->getName() == 'jobs.index'
                 || Route::current()->getName() == 'jobs.create'
+                || Route::current()->getName() == 'jobs.edit'
                 || Route::current()->getName() == 'categories.index'
                 || Route::current()->getName() == 'categories.create'
         ]) data-bs-parent="#sidebar-nav">

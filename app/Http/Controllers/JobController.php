@@ -14,7 +14,8 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::with(['category','company'])->latest()->get();
+        //$jobs = Job::with(['category','company'])->latest()->get();
+        $jobs = Job::getRecords()->get();
         return view('jobs.index',['jobs'=> $jobs]);
     }
 
@@ -54,17 +55,10 @@ class JobController extends Controller
         $jobId = $jobs->id;
 
         //add category
-        $category = Category::find($validatedData['category_id']);
-        if(!empty($category)) {
-            $category->job_id = $jobId;
-            $category->save();
-        }
-        
-        //add company
-        // $company = Company::find($validatedData['company_id']);
-        // if(!empty($company)) {
-        //     $company->job_id = $jobId;
-        //     $company->save();
+        // $category = Category::find($validatedData['category_id']);
+        // if(!empty($category)) {
+        //     $category->job_id = $jobId;
+        //     $category->save();
         // }
 
         return redirect()->back()->with('success', 'Job Successfully Created');
@@ -82,24 +76,62 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Job $job, Request $request)
     {
-        //
+        $companies = Company::all();
+        $categories = Category::getCategories();
+        
+        return view('jobs.edit',
+            [
+                'job'=> $job, 
+                'companies'=>$companies, 
+                'categories'=>$categories
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Job $job, Request $request)
     {
-        //
+        //dd($job);
+        $validatedData = $request->validate([
+            'title'=>'required|string',
+            'description'=> 'required',
+            'salary' => 'required',
+            'category_id'=> '',
+            'company_id' => '',
+            'state_id' => '',
+            'open_date'=> 'date',
+            'close_date'=> 'date',
+            'status'=> ''
+        ]);
+
+        //dd($validatedData);
+        
+        //Update to new category
+        $category = Category::find($validatedData['category_id']);
+        if(!empty($category)) {
+            $job->category_id = $category->id;
+        }
+        
+        $job->update($validatedData);
+
+        return redirect()->back()->with('success', 'Job Successfully updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Job $job, Request $request)
     {
-        //
+        $job->delete();
+        // return redirect()->route('jobs.index')->with('success', 'Mesage D')
+        session()->flash('success','Job Deleted Successfully');
+        return response()->json([
+            'success' => true,
+            'message' => 'Job Deleted Successfully'
+        ]);
     }
 }

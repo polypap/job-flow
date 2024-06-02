@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Dashboard - JobFlow</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -27,7 +27,14 @@
 
   <!-- Template Main CSS File -->
   {{-- <link href="assets/css/style.css" rel="stylesheet"> --}}
-  @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/css/backendStyles.css', 'resources/js/app.js'])
+  @vite(
+    [
+      'resources/sass/app.scss', 
+      'resources/css/app.css', 
+      'resources/css/backendStyles.css', 
+      'resources/js/app.js'
+      ]
+    )
 </head>
 
 <body>
@@ -38,6 +45,7 @@
     @yield('content')
   </main>
   @include('backend.layouts.footer')
+  @yield('script')
 
   <!-- Vendor JS Files -->
   {{-- <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

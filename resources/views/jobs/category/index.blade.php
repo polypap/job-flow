@@ -37,7 +37,7 @@
                   <th scope="row">{{$counter}}</th>
                   <td> {{$category->title}}</td>
                   <td> {{$category->status}}</td>
-                  <td>{{Helpers::shortenString($category->description, 10)}}</td>
+                  <td>{!!Helpers::shortenString($category->description, 10)!!}</td>
                   <td>
                     <div class="btn-group gap-1">
                       <a th:href="@{clients/editclient(id=${client.id})}" class="btn btn-sm btn-primary" id="editBtn" data-bs-toggle="modal" data-bs-target="#editClient"><i class="bi bi-pencil-square"></i></a>

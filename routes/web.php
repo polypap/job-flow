@@ -45,8 +45,11 @@ Route::middleware(['adminuser'])->group( function() {
 
   Route::post('jobs', [JobController::class, 'store'])->name('jobs.store');
   Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
+  Route::match(['put','patch'],'jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+  Route::get('jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+  Route::delete('jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
   Route::resource('categories', CategoryController::class)->only(['index', 'show','create','store','update','destroy']);
-  Route::resource('companies', CompanyController::class)->only(['index', 'show','create','store','update','destroy']);
+  Route::resource('companies', CompanyController::class)->only(['index', 'edit', 'show','create','store','update','destroy']);
   
 });
 // Route::delete('logout' , fn () => to_route('user.logout'))->name('logout');

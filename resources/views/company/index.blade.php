@@ -35,7 +35,7 @@
                 @forelse($companies as $company)
                 <tr>
                   <th scope="row">{{$counter}}</th>
-                  <td> {{$company->title}}</td>
+                  <td> {{$company->name}}</td>
                   <td> {{$company->city}}</td>
                   <td> {{$company->state}}</td>
                   <td>
