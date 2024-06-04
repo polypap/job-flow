@@ -82,29 +82,29 @@
 @section('script')
 <script type="module">
   jQuery(document).ready(function(){
-    console.log("fjf")
-    jQuery('table #deleteBtn').on('click', function(event){
-      event.preventDefault();
-      console.log(jQuery(this).attr('href'));
+  console.log("fjf")
+  jQuery('table #deleteBtn').on('click', function(event){
+    event.preventDefault();
+    console.log(jQuery(this).attr('href'));
 
-      jQuery('#confirmDelete').attr('href', jQuery(this).attr('href'));
-      jQuery('#confirmDelete').on('click', function(event){
-        event.preventDefault();
-        jQuery.ajax({ 
-          type: "post",
-          url:jQuery(this).attr('href'),
-          headers: {'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')},
-          data: {_method: 'delete'}, 
-          success: function(response) {
-            window.location= '/jobs';
-          },
-          error : function(data) {
-            console.log(data);
-          }
-        });
-      })
-      
-    });
-  })
+    jQuery('#confirmDelete').attr('href', jQuery(this).attr('href'));
+    jQuery('#confirmDelete').on('click', function(event){
+      event.preventDefault();
+      jQuery.ajax({ 
+        type: "post",
+        url:jQuery(this).attr('href'),
+        headers: {'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')},
+        data: {_method: 'delete'}, 
+        success: function(response) {
+          window.location= '/jobs';
+        },
+        error : function(data) {
+          console.log(data);
+        }
+      });
+    })
+    
+  });
+});
 </script>
 @endsection

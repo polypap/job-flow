@@ -36,7 +36,7 @@
                 <tr>
                   <th scope="row">{{$counter}}</th>
                   <td> {{$category->title}}</td>
-                  <td> {{$category->status}}</td>
+                  <td> {{Helpers::booleanToString($category->status,['true'=>'Active','flase'=>'Closed'])}}</td>
                   <td>{!!Helpers::shortenString($category->description, 10)!!}</td>
                   <td>
                     <div class="btn-group gap-1">
