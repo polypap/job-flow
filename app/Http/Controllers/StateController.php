@@ -11,7 +11,8 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
+        $states = [];
+        return view('states.index', ['states' => $states]);
     }
 
     /**
@@ -19,7 +20,7 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+        return view('states.create');
     }
 
     /**

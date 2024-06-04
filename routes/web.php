@@ -3,9 +3,11 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\StateController;
 use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +52,8 @@ Route::middleware(['adminuser'])->group( function() {
   Route::delete('jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
   Route::resource('categories', CategoryController::class)->only(['index', 'show','create', 'edit','store','update','destroy']);
   Route::resource('companies', CompanyController::class)->only(['index', 'edit', 'show','create','store','update','destroy']);
+  Route::resource('countries', CountryController::class)->only(['index', 'show','create', 'edit','store','update','destroy']);
+  Route::resource('states', StateController::class)->only(['index', 'show','create', 'edit','store','update','destroy']);
   
 });
 // Route::delete('logout' , fn () => to_route('user.logout'))->name('logout');

@@ -98,25 +98,58 @@
       </ul>
     </li><!-- End Companies Nav -->
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#globals-nav" data-bs-toggle="collapse" href="">
+    <li @class([
+      'nav-item', 
+      'collapsed' => Route::current()->getName() == 'countries.index'
+                  || Route::current()->getName() == 'countries.create'
+                  || Route::current()->getName() == 'countries.edit'
+                  || Route::current()->getName() == 'states.index'
+                  || Route::current()->getName() == 'states.create'
+                  || Route::current()->getName() == 'states.edit'                    
+      ])>
+      <a @class([
+        'nav-link', 
+        'collapsed' => Route::current()->getName() != 'countries.index'
+                  && Route::current()->getName() != 'countries.create'
+                  && Route::current()->getName() != 'countries.edit'
+                  && Route::current()->getName() != 'states.index'
+                  && Route::current()->getName() != 'states.create'
+                  && Route::current()->getName() != 'states.edit' 
+                  
+        ]) collapsed" data-bs-target="#globals-nav" data-bs-toggle="collapse" href="">
         <i class="bi bi-folder2-open"></i><span>Globals</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="globals-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="globals-nav" @class([
+        'nav-content collapse', 
+        'show' => Route::current()->getName() == 'countries.index'
+                  || Route::current()->getName() == 'countries.create'
+                  || Route::current()->getName() == 'countries.edit'
+                  || Route::current()->getName() == 'states.index'
+                  || Route::current()->getName() == 'states.create'
+                  || Route::current()->getName() == 'states.edit'
+        ]) data-bs-parent="#sidebar-nav">
         <li class="nav-item">
-          <a href="components-alerts.html">
+          <a href="{{route('countries.index')}}" @class([
+            'text-success active' => Route::current()->getName() == 'countries.index'
+                  || Route::current()->getName() == 'countries.create'
+                  || Route::current()->getName() == 'countries.edit'
+            ])>
             <i class="bi bi-circle"></i><span>Countries</span>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="components-alerts.html">
+          <a href="{{route('states.index')}}" @class([
+            'text-success active' => Route::current()->getName() == 'states.index'
+                  || Route::current()->getName() == 'states.create'
+                  || Route::current()->getName() == 'states.edit'
+            ])>
             <i class="bi bi-circle"></i><span>States</span>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="components-alerts.html">
+          <a href="#">
             <i class="bi bi-circle"></i><span>Cities</span>
           </a>
         </li>

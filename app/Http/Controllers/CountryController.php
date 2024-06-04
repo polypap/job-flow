@@ -11,7 +11,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $countries = [];
+        return view('countries.index',['countries' => $countries]);
     }
 
     /**
@@ -19,7 +20,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('countries.create');
     }
 
     /**
