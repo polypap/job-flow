@@ -40,9 +40,9 @@
                   <td>{!!Helpers::shortenString($category->description, 10)!!}</td>
                   <td>
                     <div class="btn-group gap-1">
-                      <a th:href="@{clients/editclient(id=${client.id})}" class="btn btn-sm btn-primary" id="editBtn" data-bs-toggle="modal" data-bs-target="#editClient"><i class="bi bi-pencil-square"></i></a>
+                      <a href="{{route('categories.edit',$category)}}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
                       <a th:href="@{clients/viewclient(id=${client.id})}" class="btn btn-sm btn-success" id="viewBtn" data-bs-toggle="modal" data-bs-target="#viewClient"><i class="bi bi-ticket-detailed"></i></a>
-                      <a  th:href="@{clients/delete(id=${client.id})}" class="btn btn-sm btn-danger" data-bs-toggle="modal" id="deleteBtn" data-bs-target="#deleteClient" ><i class="bi bi-trash"></i></a>
+                      <a href="{{route('categories.destroy', $category)}}" class="btn btn-sm btn-danger" data-bs-toggle="modal" id="deleteBtn" data-bs-target="#deleteCategory" ><i class="bi bi-trash"></i></a>
                     </div>
                   </td>
                 </tr>
@@ -58,6 +58,20 @@
         </div>
       </div>
   </div>
+  @include('jobs.category.delete')
 </section>
-
-@endsection   
+@endsection
+@section('script')
+  <script type="module">
+    jQuery(document).ready(function(){
+      let deleteBtn = jQuery('#deleteBtn');
+      deleteBtn.on('click', function(event){
+        event.preventDefault();
+        let action = jQuery(this).attr('href');
+        console.log(action);
+        let form = jQuery('#deleteCategory #deleteForm');
+        form.attr('action', action);
+      });
+    });
+  </script>
+@endsection

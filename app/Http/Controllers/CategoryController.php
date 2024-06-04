@@ -51,24 +51,33 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('jobs.category.edit', ['category'=> $category]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Category $category, Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|min:2|max:50',
+            'description'=>'',
+            'status' => ''
+        ]);
+
+        $category->update( $validatedData );
+
+        return redirect()->back()->with('success', 'Category successfully updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index')->with('success', 'Category Deleted successfully');
     }
 }
