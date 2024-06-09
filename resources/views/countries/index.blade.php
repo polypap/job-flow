@@ -34,9 +34,8 @@
                 @forelse($countries as $country)
                 <tr>
                   <th scope="row">{{$counter}}</th>
-                  <td> {{$category->name}}</td>
-                  <td> {{Helpers::booleanToString($country->code,['true'=>'Active','flase'=>'Closed'])}}</td>
-                  <td>{!!Helpers::shortenString($country->description, 10)!!}</td>
+                  <td> {{$country->name}}</td>
+                  <td> {{$country->code}}</td>
                   <td>
                     <div class="btn-group gap-1">
                       <a href="{{route('countries.edit',$country)}}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>

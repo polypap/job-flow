@@ -13,7 +13,7 @@
   <section class="section jobs">
     <div class="row">
       <div class="col-lg-12 text-end mb-4">
-        <a href="{{route('categories.index')}}" class="btn btn-primary"><i class="bi bi-eye"></i> All Category</a>
+        <a href="{{route('categories.index')}}" class="btn btn-primary"><i class="bi bi-eye"></i> All Categories</a>
       </div>
     </div>
     <div class="card">

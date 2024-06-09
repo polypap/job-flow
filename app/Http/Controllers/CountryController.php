@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -11,7 +12,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = [];
+        $countries = Country::query()->latest()->paginate(10);
         return view('countries.index',['countries' => $countries]);
     }
 
@@ -28,7 +29,15 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name'=> 'required|max:50|min:3',
+            'code'=> 'unique:countries|required|max:3',
+            'description' => ''
+        ]);
+
+        Country::create($validatedData);
+        
+        return redirect()->back()->with('success', 'Country created succesffully');
     }
 
     /**

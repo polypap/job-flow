@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('location')->default("US");
             $table->foreignIdFor(User::class)->nullable();
             $table->unsignedTinyInteger('status')->default(1);
+            $table->string('str_address')->nullable();
+            $table->string('city')->nullable();
+            $table->integer('zip')->nullable();
             $table->date('open_date')->nullable();
             $table->date('close_date')->nullable();
             $table->enum('experience', Job::$experience)->nullable();

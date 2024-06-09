@@ -6,7 +6,10 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\MyJobApplicationController;
+use App\Http\Controllers\MyJobController;
 use App\Http\Controllers\StateController;
 use App\Models\Job;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +57,9 @@ Route::middleware(['adminuser'])->group( function() {
   Route::resource('companies', CompanyController::class)->only(['index', 'edit', 'show','create','store','update','destroy']);
   Route::resource('countries', CountryController::class)->only(['index', 'show','create', 'edit','store','update','destroy']);
   Route::resource('states', StateController::class)->only(['index', 'show','create', 'edit','store','update','destroy']);
+  Route::resource('job.application', JobApplicationController::class)
+        ->only(['create', 'store']);
+  Route::resource('my-job-application', MyJobApplicationController::class)->only(['index','destroy','store']);
   
 });
 // Route::delete('logout' , fn () => to_route('user.logout'))->name('logout');

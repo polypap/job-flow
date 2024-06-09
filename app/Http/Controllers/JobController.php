@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use \App\Models\Job;
+use App\Models\State;
 
 class JobController extends Controller
 {
@@ -15,7 +16,7 @@ class JobController extends Controller
     public function index()
     {
         //$jobs = Job::with(['category','company'])->latest()->get();
-        $jobs = Job::getRecords()->get();
+        $jobs = Job::GetJobRecords()->paginate(15);
         return view('jobs.index',['jobs'=> $jobs]);
     }
 
@@ -26,10 +27,12 @@ class JobController extends Controller
     {
         $categories = Category::getCategories();
         $companies = Company::all();
+        $states = State::all();
         return view('jobs.create',
             [
                 'categories'=> $categories,
-                'companies' => $companies
+                'companies' => $companies,
+                'states' => $states
             ]
         );
     }
@@ -48,7 +51,10 @@ class JobController extends Controller
             'state_id' => '',
             'open_date'=> 'date',
             'close_date'=> 'date',
-            'status'=> ''
+            'status'=> '',
+            'city'=>'',
+            'zip'=> 'max:5',
+            'str_address' =>''
         ]);
     
         $jobs = Job::create($validatedData);
@@ -68,8 +74,9 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Job $job)
     {
+        return view('jobs.show', ['job'=> $job]);
         
     }
 
@@ -80,12 +87,14 @@ class JobController extends Controller
     {
         $companies = Company::all();
         $categories = Category::getCategories();
+        $states = State::all();
         
         return view('jobs.edit',
             [
                 'job'=> $job, 
                 'companies'=>$companies, 
-                'categories'=>$categories
+                'categories'=>$categories,
+                'states' => $states
             ]
         );
     }
@@ -95,7 +104,6 @@ class JobController extends Controller
      */
     public function update(Job $job, Request $request)
     {
-        //dd($job);
         $validatedData = $request->validate([
             'title'=>'required|string',
             'description'=> 'required',
@@ -105,16 +113,18 @@ class JobController extends Controller
             'state_id' => '',
             'open_date'=> 'date',
             'close_date'=> 'date',
-            'status'=> ''
+            'status'=> '',
+            'zip'=> 'max:5',
+            'str_address' =>'',
+            'city'=> ''
+
         ]);
 
-        //dd($validatedData);
-        
         //Update to new category
-        $category = Category::find($validatedData['category_id']);
-        if(!empty($category)) {
-            $job->category_id = $category->id;
-        }
+        // $category = Category::find($validatedData['category_id']);
+        // if(!empty($category)) {
+        //     $job->category_id = $category->id;
+        // }
         
         $job->update($validatedData);
 

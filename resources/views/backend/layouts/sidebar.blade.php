@@ -62,11 +62,11 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#aplication-nav" data-bs-toggle="collapse" href="">
-        <i class="bi bi-folder2-open"></i><span>Job Applications</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-card-list"></i><span>Job Applications</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="aplication-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="components-alerts.html">
+          <a href="#">
             <i class="bi bi-circle"></i><span>My Applications</span>
           </a>
         </li>
@@ -75,24 +75,34 @@
 
     <li @class([
       'nav-item', 
-      'collapsed' => Route::current()->getName() == 'companies.index'              
+      'collapsed' => Route::current()->getName() == 'companies.index'  
+                    || Route::current()->getName() == 'companies.create'            
       ]) >
       <a @class([
         'nav-link', 
-        'collapsed' => Route::current()->getName() != 'companies.index'        
+        'collapsed' => Route::current()->getName() != 'companies.index'
+                      && Route::current()->getName() != 'companies.create'        
         ]) 
         data-bs-target="#company-nav" data-bs-toggle="collapse" href="">
-        <i class="bi bi-folder2-open"></i><span>Companies</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-bank"></i><span>Companies</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="company-nav" @class([
         'nav-content collapse', 
         'show' => Route::current()->getName() == 'companies.index'
+                  ||Route::current()->getName() == 'companies.create'
         ])  data-bs-parent="#sidebar-nav">
         <li>
           <a href="{{route('companies.index')}}" @class([
             'text-success active' => Route::current()->getName() == 'companies.index'
             ])>
             <i class="bi bi-circle"></i><span>All Companies</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{route('companies.create')}}" @class([
+            'text-success active' => Route::current()->getName() == 'companies.create'
+            ])>
+            <i class="bi bi-circle"></i><span>Add New Company</span>
           </a>
         </li>
       </ul>
@@ -117,7 +127,7 @@
                   && Route::current()->getName() != 'states.edit' 
                   
         ]) collapsed" data-bs-target="#globals-nav" data-bs-toggle="collapse" href="">
-        <i class="bi bi-folder2-open"></i><span>Globals</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-globe2"></i><span>Globals</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="globals-nav" @class([
         'nav-content collapse', 

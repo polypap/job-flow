@@ -13,18 +13,18 @@
   <section class="section jobs">
     <div class="row">
       <div class="col-lg-12 text-end mb-4">
-        <a href="{{route('categories.index')}}" class="btn btn-primary"><i class="bi bi-eye"></i> All Country</a>
+        <a href="{{route('countries.index')}}" class="btn btn-primary"><i class="bi bi-eye"></i> All Country</a>
       </div>
     </div>
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Country</h5>
         <!-- Multi Columns Form -->
-        <form method="POST" action="{{route('categories.store')}}" class="row g-3">
+        <form method="POST" action="{{route('countries.store')}}" class="row g-3">
           @csrf
           <div class="col-md-6">
-            <label for="title" class="form-label">Country Name</label>
-            <input type="text" value="{{old('title')}}" class="form-control" id="title" name="title">
+            <label for="name" class="form-label">Country Name</label>
+            <input type="text" value="{{old('name')}}" class="form-control" id="name" name="name">
             @error('title')
               <div class="text-danger">
                 {{$message}}
@@ -32,16 +32,16 @@
             @enderror
           </div>
           <div class="col-md-6">
-            <label for="title" class="form-label">Country Abbreviation Code</label>
-            <input type="text" value="{{old('title')}}" class="form-control" id="title" name="title">
-            @error('title')
+            <label for="code" class="form-label">Country Abbreviation Code</label>
+            <input type="text" value="{{old('code')}}" class="form-control" id="code" name="code">
+            @error('code')
               <div class="text-danger">
                 {{$message}}
               </div>
             @enderror
           </div>      
           <div class="col-md-12">
-            <label for="opendate" class="form-label">Description</label>
+            <label for="description" class="form-label">Description</label>
             <textarea class="form-control" name="description" id="description" style="height: 150px;"></textarea>
             @error('description')
               <div class="text-danger">

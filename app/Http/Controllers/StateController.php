@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class StateController extends Controller
@@ -11,8 +13,10 @@ class StateController extends Controller
      */
     public function index()
     {
-        $states = [];
-        return view('states.index', ['states' => $states]);
+        $states = State::query()->latest()->with(['country'])->paginate(10);
+
+        $countries = Country::all();
+        return view('states.index', ['states' => $states, 'countries' => $countries]);
     }
 
     /**
@@ -20,7 +24,8 @@ class StateController extends Controller
      */
     public function create()
     {
-        return view('states.create');
+        $countries = Country::all();
+        return view('states.create',['countries'=>$countries]);
     }
 
     /**
@@ -28,7 +33,22 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name'=> 'required|max:50|min:3',
+            'code'=> 'unique:states|required|max:2',
+            'country_id'=> 'required'
+        ]);
+
+        $countryId = $validatedData['country_id'];
+        $country = Country::find($countryId);
+        if(empty($country)){
+            return redirect()->back()->with('error','There seems to be an issue with the selected country');
+        }
+
+        $country->states()->create($validatedData);
+
+        return redirect()->back()->with('success', 'State Created Successfully.');
+
     }
 
     /**

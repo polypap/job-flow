@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
 use Illuminate\Http\Request;
 
-class JobApplicationController extends Controller
+class MyJobApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +17,9 @@ class JobApplicationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Job $job, Request $request)
+    public function create()
     {
-        $currentUser = Auth()->user();
-        //dd($currentUser);
-        return view('jobs-application.create',[
-            'job'=>$job,
-            'user'=> $currentUser
-        ]);
+        //
     }
 
     /**

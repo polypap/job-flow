@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -21,7 +22,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::all();
+        return view('company.create',['states' => $states]);
     }
 
     /**
@@ -29,7 +31,13 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name'=> 'required|max:50',
+            'state_id' => ''
+        ]);
+
+        Company::create($validatedData);
+        return redirect()->back()->with('success', "Company Created Successfully");
     }
 
     /**

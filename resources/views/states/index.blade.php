@@ -36,13 +36,13 @@
                 <tr>
                   <th scope="row">{{$counter}}</th>
                   <td> {{$state->name}}</td>
-                  <td> {{Helpers::booleanToString($state->code,['true'=>'Active','flase'=>'Closed'])}}</td>
-                  <td>{!!Helpers::shortenString($state->description, 10)!!}</td>
+                  <td> {{$state->code}}</td>
+                  <td>{{$state->country->code}}</td>
                   <td>
                     <div class="btn-group gap-1">
                       <a href="{{route('states.edit',$state)}}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
                       <a th:href="@{clients/viewclient(id=${client.id})}" class="btn btn-sm btn-success" id="viewBtn" data-bs-toggle="modal" data-bs-target="#viewClient"><i class="bi bi-ticket-detailed"></i></a>
-                      <a href="{{route('states.destroy', $state)}}" class="btn btn-sm btn-danger" data-bs-toggle="modal" id="deleteBtn" data-bs-target="#deleteCategory" ><i class="bi bi-trash"></i></a>
+                      <a href="{{route('states.destroy', $state)}}" class="btn btn-sm btn-danger" data-bs-toggle="modal" id="deleteBtn" data-bs-target="#deleteState" ><i class="bi bi-trash"></i></a>
                     </div>
                   </td>
                 </tr>

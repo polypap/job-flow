@@ -1,21 +1,87 @@
 @extends('backend.layouts.app')
 @section('content')
   <div class="pagetitle">
-    <h1>Edit Job</h1>
+    <h1>Job Application</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item"><a href="{{route('jobs.index')}}"></a>Jobs</li>
-        <li class="breadcrumb-item active">edit</li>
+        <li class="breadcrumb-item active">view</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
   <section class="section jobs">
+    <div class="col-lg-12 text-end mb-4">
+      <a href="{{route('jobs.index')}}" class="btn btn-primary">All Jobs</a>
+      <a href="{{route('job.application.create',$job)}}" class="btn btn-primary">Apply</a>
+    </div>
+
     <div class="card">
+      <div class="card-header">
+        Profile
+      </div>
       <div class="card-body">
-        <h5 class="card-title">Job</h5>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="text-center py-2 fs-2">
+                <i class="fa fa-circle-user"></i>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Basic Info</h5>
+                <p class="card-text">Basic user info goes here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h3>{{$job->title}}</h3>
+            <div class="d-flex gap-3">
+              <div class="fw-bold">
+                <i class="bi bi-geo-alt-fill"></i> {{$job->city}}, FL
+              </div>
+              <div>
+                <i class="bi bi-building"></i> Gerp LLC
+              </div>
+              <div>
+                Posted: {{Helpers::getDateFormat($job->open_date)}}
+              </div>
+              <div>
+                <i class="bi bi-clock-fill"></i> Full-time
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="d-inline-flex gap-2">
+              <div>
+                Category: <strong>IT</strong>
+              </div>
+              <div>Applicants <span class="badge rounded-pill bg-info text-dark">5</span></div>
+            </div>
+            
+            <div class="text-right mt-1">Closing: <strong>{{Helpers::getDateFormat($job->close_date)}}</strong></div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="card-body">
+        <h5 class="card-title fs-2"><i class="bi bi-currency-dollar"></i> {{$job->salary}}</h5>
+        <div class="row">
+          <div class="col-sm-12">
+            
+            <h4 class="title fw-bold">Job Description</h4>
+            <div>
+              {!!$job->description!!}
+            </div>
+          </div>
+        </div>
         <!-- Multi Columns Form -->
-        <form method="post" action="{{route('jobs.update', $job)}}" class="row g-3">
+        {{-- <form method="post" action="{{route('jobs.update', $job)}}" class="row g-3">
           @csrf
           @method('PUT')
           <div class="col-md-8">
@@ -30,11 +96,7 @@
           <div class="col-md-4">
             <label for="company" class="form-label">Company</label>
             <select id="company" name="company_id" value="{{old('company_id',$job->company_id)}}" class="form-select">
-              @forelse($companies as $company)
-                <option  value="{{$company->id}}" {{(old('company_id',$job->company_id)==$company->id) ? 'selected': ''}}>{{$company->name}}</option>
-              @empty
-                
-              @endforelse
+              
             </select>
             @error('company')
               <div class="text-danger">
@@ -63,13 +125,9 @@
           <div class="col-md-4">
             <label for="state" class="form-label">State</label>
             <select id="state" name="state_id" value="{{old('state_id', $job->state_id ?? '')}}" class="form-select">
-              @forelse($states as $state)
-                <option value="{{$state->id }}" {{($state->id == $job->state_id) ? 'selected' : ''}}>
-                  {{$state->name}}
-                </option>
-              @empty
+             
                 
-              @endforelse
+              
             </select>
             @error('state')
               <div class="text-danger">
@@ -119,11 +177,7 @@
           <div class="col-md-2">
             <label for="category" class="form-label">Category</label>
             <select id="category" name="category_id" value="{{old('category_id',$job->category_id)}}" class="form-select">
-              @forelse($categories as $category)
-                <option value="{{$category->id}}" {{(old('category_id',$job->category_id) ==$category->id) ? 'selected': ''}}>{{$category->title}}</option>
-              @empty
-                
-              @endforelse
+              
             </select>
           </div>
           <div class="col-md-2">
@@ -147,7 +201,7 @@
           <div class="text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
-        </form><!-- End Multi Columns Form -->
+        </form><!-- End Multi Columns Form --> --}}
       </div>
     </div>
   </section>

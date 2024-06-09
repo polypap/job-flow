@@ -41,8 +41,12 @@
                 <tr>
                   <th scope="row">{{$counter}}</th>
                   <td> {{Helpers::shortenString($job->title, 3)}}</td>
-                  <td></td>
-                  <td></td>
+                  <td>{{$job->city}}</td>
+                  <td>
+                    @if($job->state)
+                      {{$job->state->name}}
+                    @endif
+                  </td>
                   <td>
                     @if($job->company)
                       {{$job->company->name}}
@@ -53,12 +57,15 @@
                   <td>{{Helpers::getDateFormat($job->open_date)}}</td>
                   <td>{{Helpers::getDateFormat($job->close_date)}}</td>
                   <td>
+                    @if($job->category)
+                      {{$job->category->title}}
+                    @endif
                     {{$job->category_name}}
                   </td>
                   <td>
                     <div class="btn-group gap-1">
                       <a  class="btn btn-sm btn-primary" id="editBtn" href="{{route('jobs.edit',$job)}}"><i class="bi bi-pencil-square"></i></a>
-                      <a th:href="@{clients/viewclient(id=${client.id})}" class="btn btn-sm btn-success" id="viewBtn" data-bs-toggle="modal" data-bs-target="#viewClient"><i class="bi bi-ticket-detailed"></i></a>
+                      <a href="{{route('jobs.show', $job)}}" class="btn btn-sm btn-success"><i class="bi bi-ticket-detailed"></i></a>
                       <a  href="{{route('jobs.destroy', $job)}}" class="btn btn-sm btn-danger" data-bs-toggle="modal" id="deleteBtn" data-bs-target="#deleteJob" ><i class="bi bi-trash"></i></a>
                     </div>
                   </td>
@@ -71,6 +78,8 @@
                 @endforelse
               </tbody>
             </table>
+            <div class="mt-4 pt-2">{{$jobs->links()}}</div>
+            
           </div>
         </div>
       </div>
