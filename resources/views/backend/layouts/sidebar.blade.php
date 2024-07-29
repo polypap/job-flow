@@ -66,7 +66,9 @@
       </a>
       <ul id="aplication-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="#">
+          <a href="{{route('my-job-application.index')}}" @class([
+            'text-success active' => Route::current()->getName() == 'my-job-application.index'
+            ])>
             <i class="bi bi-circle"></i><span>My Applications</span>
           </a>
         </li>

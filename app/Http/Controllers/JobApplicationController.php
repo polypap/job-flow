@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
 
 class JobApplicationController extends Controller
@@ -31,9 +32,15 @@ class JobApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Job $job, Request $request)
     {
-        //
+        $job->jobApplications()->create([
+            'user_id'=> $request->user()->id
+        ]);
+
+        //send a message to the user about the application
+
+        return redirect()->route('jobs.show', $job)->with('success', 'Congratulation! You have successfully applied');
     }
 
     /**
@@ -63,7 +70,7 @@ class JobApplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(JobApplication $myJobApplication)
     {
         //
     }

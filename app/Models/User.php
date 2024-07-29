@@ -50,4 +50,8 @@ class User extends Authenticatable
     public static function getSingleByID($id){
         return self::find($id);
     }
+
+    public function jobApplications(){
+        return $this->hasMany(JobApplication::class);
+    }
 }
