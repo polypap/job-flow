@@ -1,4 +1,4 @@
-<p align="center"><img src="https://mygames.dreamhosters.com/imgs/home-3.png" width="400" alt="jobflow"></p>
+<p align="center"><img src="https://mygames.dreamhosters.com/imgs/home-3.png" width="90" alt="jobflow"></p>
 
 
 ## About JobFlow
@@ -13,6 +13,8 @@ Jobflow is a web application developed in <strong>laravel 10</strong>. Jobflow a
 ## Code of Conduct
 Eat your apple and keep coding.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## App screenshots
+<h4>Home Screen</h4>
+<p align="center"><img src="https://mygames.dreamhosters.com/imgs/home.png" width="400" alt="jobflow"></p>
+<h4>Admin Backend view</h4>
+<p align="center"><img src="https://mygames.dreamhosters.com/imgs/admin.png" width="400" alt="jobflow"></p>
