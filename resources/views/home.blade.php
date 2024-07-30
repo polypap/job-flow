@@ -26,7 +26,7 @@
                       <span class="badge bg-info text-light">{{$job->experience}}</span>
                     </a>
                     <a>
-                      <span class="badge bg-info text-light">{{$job->category}}</span>
+                      <span class="badge bg-info text-light">{{$job->category->title??''}}</span>
                     </a>
                   </div>
                 </div>
