@@ -15,6 +15,6 @@ Eat your apple and keep coding.
 
 ## App screenshots
 <h4>Home Screen</h4>
-<p align="center"><img src="https://mygames.dreamhosters.com/imgs/home.png" width="400" alt="jobflow"></p>
+<p align="center"><img src="https://mygames.dreamhosters.com/imgs/home.png" width="700" alt="jobflow"></p>
 <h4>Admin Backend view</h4>
-<p align="center"><img src="https://mygames.dreamhosters.com/imgs/admin.png" width="400" alt="jobflow"></p>
+<p align="center"><img src="https://mygames.dreamhosters.com/imgs/admin.png" width="700" alt="jobflow"></p>
