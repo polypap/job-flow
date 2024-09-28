@@ -52,25 +52,34 @@ class StateController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(State $state)
     {
-        //
+        $countries = Country::all();
+        return view('states.edit', ['countries' => $countries, 'state' => $state]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(State $state, Request $request)
+    {
+        $validatedData = $request->validate([
+            'name'=> 'required|max:50|min:3',
+            'code'=> 'required|max:2',
+            'country_id'=> 'required'
+        ]);
+
+        $state->update($validatedData );
+
+        return redirect()->back()->with('success', 'State updated successfully');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
         //
     }

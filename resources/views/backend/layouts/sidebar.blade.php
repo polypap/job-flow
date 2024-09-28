@@ -14,26 +14,26 @@
     </li><!-- End Dashboard Nav -->
 
     <li @class([
-      'nav-item', 
+      'nav-item',
       'collapsed' => Route::current()->getName() == 'jobs.index'
                   || Route::current()->getName() == 'jobs.create'
                   || Route::current()->getName() == 'jobs.edit'
                   || Route::current()->getName() == 'categories.index'
-                  || Route::current()->getName() == 'categories.create'              
+                  || Route::current()->getName() == 'categories.create'
       ]) >
       <a @class([
-        'nav-link', 
+        'nav-link',
         'collapsed' => Route::current()->getName() != 'jobs.index'
                     &&  Route::current()->getName() != 'jobs.create'
                     &&  Route::current()->getName() != 'jobs.edit'
                     && Route::current()->getName() != 'categories.index'
                     && Route::current()->getName() != 'categories.create'
-                  
+
         ]) data-bs-target="#job-nav" data-bs-toggle="collapse" href="">
         <i class="bi bi-briefcase"></i><span>Jobs</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="job-nav" @class([
-        'nav-content collapse', 
+        'nav-content collapse',
         'show' => Route::current()->getName() == 'jobs.index'
                 || Route::current()->getName() == 'jobs.create'
                 || Route::current()->getName() == 'jobs.edit'
@@ -41,7 +41,7 @@
                 || Route::current()->getName() == 'categories.create'
         ]) data-bs-parent="#sidebar-nav">
         <li>
-          <a  href="{{route('jobs.index')}}" @class(['text-success active' => Route::current()->getName() == 'jobs.index'])>
+          <a  href="{{route('jobs.index')}}" @class(['text-success active link-underline-quaternary' => Route::current()->getName() == 'jobs.index'])>
             <i class="bi bi-circle"></i><span>All Jobs</span>
           </a>
         </li>
@@ -76,20 +76,20 @@
     </li><!-- End Applicatios Nav -->
 
     <li @class([
-      'nav-item', 
-      'collapsed' => Route::current()->getName() == 'companies.index'  
-                    || Route::current()->getName() == 'companies.create'            
+      'nav-item',
+      'collapsed' => Route::current()->getName() == 'companies.index'
+                    || Route::current()->getName() == 'companies.create'
       ]) >
       <a @class([
-        'nav-link', 
+        'nav-link',
         'collapsed' => Route::current()->getName() != 'companies.index'
-                      && Route::current()->getName() != 'companies.create'        
-        ]) 
+                      && Route::current()->getName() != 'companies.create'
+        ])
         data-bs-target="#company-nav" data-bs-toggle="collapse" href="">
         <i class="bi bi-bank"></i><span>Companies</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="company-nav" @class([
-        'nav-content collapse', 
+        'nav-content collapse',
         'show' => Route::current()->getName() == 'companies.index'
                   ||Route::current()->getName() == 'companies.create'
         ])  data-bs-parent="#sidebar-nav">
@@ -111,28 +111,28 @@
     </li><!-- End Companies Nav -->
 
     <li @class([
-      'nav-item', 
+      'nav-item',
       'collapsed' => Route::current()->getName() == 'countries.index'
                   || Route::current()->getName() == 'countries.create'
                   || Route::current()->getName() == 'countries.edit'
                   || Route::current()->getName() == 'states.index'
                   || Route::current()->getName() == 'states.create'
-                  || Route::current()->getName() == 'states.edit'                    
+                  || Route::current()->getName() == 'states.edit'
       ])>
       <a @class([
-        'nav-link', 
+        'nav-link',
         'collapsed' => Route::current()->getName() != 'countries.index'
                   && Route::current()->getName() != 'countries.create'
                   && Route::current()->getName() != 'countries.edit'
                   && Route::current()->getName() != 'states.index'
                   && Route::current()->getName() != 'states.create'
-                  && Route::current()->getName() != 'states.edit' 
-                  
+                  && Route::current()->getName() != 'states.edit'
+
         ]) collapsed" data-bs-target="#globals-nav" data-bs-toggle="collapse" href="">
         <i class="bi bi-globe2"></i><span>Globals</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="globals-nav" @class([
-        'nav-content collapse', 
+        'nav-content collapse',
         'show' => Route::current()->getName() == 'countries.index'
                   || Route::current()->getName() == 'countries.create'
                   || Route::current()->getName() == 'countries.edit'

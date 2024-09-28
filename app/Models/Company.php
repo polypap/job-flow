@@ -12,7 +12,7 @@ class Company extends Model
     protected $fillable = ['name' , 'state', 'city', 'address','website'];
     public function jobs():HasMany{
         return $this->hasMany(Job::class);
-    } 
+    }
 
     public static function getRecords() {
         return self::query()->latest()->paginate(10);

@@ -1,12 +1,15 @@
 /******* Bootstrap Theming ********/
 
-$primary: #17a2b8;
+
+$primary: #032531;
 $secondary: #00394f;
 
-$theme-colors: (
-    "primary": $primary,
-    "secondary": $secondary,
+$custom-colors: (
+   "primary" : $primary,
+   "secondary": $secondary
 );
+
+$theme-colors:map-merge($theme-colors,$custom-colors);
 
 $font-family-sans-serif: 'Nunito', sans-serif;
 

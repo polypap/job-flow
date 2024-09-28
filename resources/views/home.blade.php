@@ -19,7 +19,7 @@
                   <div class="d-flex flex-column">
                     <small class="mr-3"><i class="fa-solid fa-building text-primary"></i>  &nbsp;Company</small>
                     <small class="mr-3"><i class="fa-solid fa-location-dot text-primary"></i> &nbsp;<strong>{{$job->location}}</strong></small>
-                    
+
                   </div>
                   <div class="d-flex justify-content-between">
                     <a href="#" class="mr-2">
@@ -36,14 +36,14 @@
                     <strong class="mr-3 fs-4"><i class="fa-solid fa-money-check-dollar text-primary"></i> &nbsp;<strong>$ {{number_format($job->salary) }}</strong></strong>
                   </div>
                   <div>
-                    <a href="" class="btn btn-primary px-4 mx-auto my-2">Check it out</a>
+                    <a href="{{route('user.auth')}}" class="btn btn-dark px-4 mx-auto my-2">Apply</a>
                   </div>
                 </div>
               </div>
             </x-card>
           </div>
         @empty
-          
+
         @endforelse
       </div>
 
@@ -549,6 +549,6 @@
   <!-- Testimonial End -->
 
   <!-- Blog Start -->
-  
+
   <!-- Blog End -->
 @endsection

@@ -1,5 +1,5 @@
 import './bootstrap';
-import './lib/isotope/isotope.pkgd.min.js';
+import 'isotope-layout';
 import './lib/owlcarousel/owl.carousel.min.js';
 // Added: Popper.js dependency for popover support in Bootstrap
 import '@popperjs/core';
